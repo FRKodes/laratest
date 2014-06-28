@@ -11,7 +11,18 @@
 |
 */
 
+// Route::get('/', function()
+// {
+// 	return View::make('hello');
+// });
+
+Route::get('/about', function()
+{
+	return View::make('about');
+});
+
 Route::get('/', function()
 {
-	return View::make('hello');
+	$vars = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt, reiciendis dolores ipsa nesciunt, illum odio ullam! Tempora ratione quasi velit odio quo fuga in, dolore, voluptatem recusandae magni omnis aspernatur.";
+	return View::make('home')->with('vars', $vars);
 });
