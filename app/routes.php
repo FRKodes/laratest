@@ -26,3 +26,21 @@ Route::get('/', function()
 	$vars = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt, reiciendis dolores ipsa nesciunt, illum odio ullam! Tempora ratione quasi velit odio quo fuga in, dolore, voluptatem recusandae magni omnis aspernatur.";
 	return View::make('home')->with('vars', $vars);
 });
+
+Route::get('/select-from-db', function()
+{
+	$users = DB::table('users')->get();
+	return $users;
+});
+
+Route::get('/select-one-from-db', function()
+{
+	$user = DB::table('users')->find(1);
+	dd($user);
+});
+
+Route::get('/where-some', function()
+{
+	$user = DB::table('users')->where('username', '!=', 'tony')->get();
+	return $user;
+});
