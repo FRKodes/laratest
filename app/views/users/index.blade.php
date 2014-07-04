@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Users</title>
-</head>
-<body>
+@extends('layouts.default')
+
+@section('titlePage')
+	Laratest - All users
+@stop
+
+@section('content')
 	<h1>All Users</h1>
 
 	@if($users->count())
@@ -14,8 +14,6 @@
 		@endforeach
 
 	@else
-		There is nothing man... sorry
+		<p>There is nothing man... sorry</p>
 	@endif
-
-</body>
-</html>
+@stop

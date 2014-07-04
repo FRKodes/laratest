@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>User</title>
+	<title>@yield('titlePage')</title>
 </head>
 <body>
-	<h1>Hello, {{ $user->username }}</h1>
+	@yield('content')
 </body>
 </html>
