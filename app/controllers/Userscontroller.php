@@ -2,15 +2,22 @@
 
 class Userscontroller extends \BaseController {
 
+
+	protected $user;
+
+	public function __construct(User $user){
+		$this->user = $user;
+	}
+
 	public function index()
 	{
-		$users = User::all();
+		$users = $this->user->all();
 		return View::make('users.index', ['users'=>$users]);
 	}
 
 	public function show($username)
 	{
-		$user = User::whereUsername($username)->first();
+		$user = $this->user->whereUsername($username)->first();
 		return View::make('users.show',['user'=>$user]);
 	}
 
@@ -22,16 +29,15 @@ class Userscontroller extends \BaseController {
 	public function store(){
 		
 		// return Input::all();
-		
-		if ( ! User::isvalid(Input::all())) 
+
+		$input = Input::all();
+
+		if ( ! $this->user->fill($input)->isValid())
 		{
-			return Redirect::back()->withInput()->withErrors(User::$errors);
+			return Redirect::back()->withInput()->withErrors($this->user->errors);
 		}
 		
-		$user = new User;
-		$user->username = Input::get('username');
-		$user->password = Hash::make(Input::get('password'));
-		$user->save();
+		$this->user->save();
 
 		// return Redirect::to('/users');
 		return Redirect::route('users.index');
