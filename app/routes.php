@@ -44,3 +44,58 @@ Route::get('/where-some', function()
 	$user = DB::table('users')->where('username', '!=', 'tony')->get();
 	return $user;
 });
+
+
+Route::get('/select-all', function()
+{
+	$users = User::all();
+	return $users;
+});
+
+Route::get('/get-one', function()
+{
+	$user = User::find(1);
+	return $user;
+});
+
+Route::get('/create-user', function()
+{
+	// $user = new User;
+	// $user->username = "Other user";
+	// $user->password = Hash::make("86876876786786876");
+	// $user->save();
+
+	User::create([
+		'username' => 'NewUser',
+		'password' => Hash::make('1234')
+	]);
+
+	return User::all();
+
+});
+
+Route::get('/update-user', function()
+{
+	
+	$user = User::find(3);
+	$user->username = "AnotherUser";
+	$user->save();
+
+	return User::all();
+	
+});
+
+Route::get('/delete-user', function()
+{
+	$user = User::find(3);
+	$user->delete();
+
+	return User::all();
+	
+});
+
+Route::get('/order-by', function()
+{
+	return User::orderBy('username','asc')->take(2)->get();
+	
+});

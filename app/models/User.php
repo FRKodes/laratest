@@ -7,6 +7,12 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
+	public $timestamps = false;
+
+	protected $fillable = ['username', 'password'];
+	
+	protected $guarded = "";/*opposite to fillable*/
+
 	use UserTrait, RemindableTrait;
 
 	/**
