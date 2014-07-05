@@ -25,6 +25,14 @@ Route::get('/', function()
 {
 	$vars = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt, reiciendis dolores ipsa nesciunt, illum odio ullam! Tempora ratione quasi velit odio quo fuga in, dolore, voluptatem recusandae magni omnis aspernatur.";
 	return View::make('home')->with('vars', $vars);
+
+	// User::create([
+	// 	'username' => 'tony',
+	// 	'email' => 'frkalderon@gmail.com',
+	// 	'password' => Hash::make('changeme')
+	// ]);
+
+	return 'done!';
 });
 
 Route::get('/select-from-db', function()
@@ -105,4 +113,13 @@ Route::get('/order-by', function()
 
 Route::resource('users','UsersController');
 
+/*sessions routes*/
+Route::get('login', 'SessionsController@create');
+Route::get('logout', 'SessionsController@destroy');
+Route::resource('sessions','SessionsController');
 
+Route::get('/admin', function()
+{
+	return "Admin area";
+	
+})->before('auth');
