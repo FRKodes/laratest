@@ -18,13 +18,18 @@
 
 Route::get('/about', function()
 {
-	return View::make('about');
+	return View::make('layouts.pages.about');
+});
+
+Route::get('/contact', function()
+{
+	return View::make('layouts.pages.contact');
 });
 
 Route::get('/', function()
 {
 	$vars = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt, reiciendis dolores ipsa nesciunt, illum odio ullam! Tempora ratione quasi velit odio quo fuga in, dolore, voluptatem recusandae magni omnis aspernatur.";
-	return View::make('home')->with('vars', $vars);
+	return View::make('layouts.pages.home')->with('vars', $vars);
 
 	// User::create([
 	// 	'username' => 'tony',
